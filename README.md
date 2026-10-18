@@ -59,14 +59,22 @@ Dockerfile.full      full deployment (CPU torch + transformers + all models)
 
 ## Branches
 
-This repository hosts several course projects on separate branches. This project lives on `main`.
+| Branch | Role | CI trigger |
+|--------|------|-----------|
+| `main` | production — publishes the `:latest` Docker image | push |
+| `staging` | pre-release — publishes the `:staging` Docker image | push |
+| `dev` | integration — runs tests / lint / Docker build | PR + push |
+| `feature/*` | short-lived work | PR into `dev` |
 
-| Branch | Content |
-|--------|---------|
-| `main` | This project — aspect-based sentiment analysis |
-| `course-log` | Course materials (notes, practice guides, slides) — was `main` |
-| `cars-crud` | Practice project — cars CRUD |
-| `git-playground` | Practice project — Git |
+## Development workflow
+
+`main`, `staging`, and `dev` are protected branches. Code flows:
+
+```
+feature/* → dev → staging → main
+```
+
+Every pull request into a protected branch runs the CI pipeline (`ruff` + `pytest` + Docker build); a PR **cannot be merged while CI fails**.
 
 ## Development notes
 
