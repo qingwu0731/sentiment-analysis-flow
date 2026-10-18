@@ -1,0 +1,41 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+/coverage.json
+htmlcov/
+
+# ---- Environment & secrets ----
+.env
+*.env
+
+# ---- Runtime artifacts ----
+*.db
+reviews.db
+
+# ---- Large model artifacts (tracked by DVC, not git) ----
+models/*.joblib
+models/*.pt
+models/lstm.joblib
+models/bert/
+models/roberta/
+models/rating_bert/
+
+# ---- MLflow local run history ----
+/mlruns/
+
+# ---- Data: tracked by DVC, not git ----
+/data/raw/
+/data/processed/
+/dvc-remote/
+
+# ---- IDE / OS ----
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
